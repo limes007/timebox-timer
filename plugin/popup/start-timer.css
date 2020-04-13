@@ -1,0 +1,30 @@
+body {
+	padding: 10px;
+	margin: 0px;
+	background-color: #469CD9;
+	color: white;
+	font-family: Verdana;
+	font-size: 12px;
+	border: 2px solid white;
+}
+
+.button {
+	padding: 5px;
+	margin: 5px 0px 0px 0px;
+	background-color: #1760D6;
+	color: white;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #21007F;
+}
+
+input[type="text"] {
+	border: 1px solid #1760D6;
+	background-color: white;
+}
+
