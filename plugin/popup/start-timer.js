@@ -1,14 +1,17 @@
 document.addEventListener("click", (e) => {
 
-	function startTimer(tabs) {
+	function startTimerAndClosePopup(tabs) {
 		browser.tabs.executeScript({file: "/content_scripts/timebox-timer.js"})
 			.then(() => {
 				let tb = document.getElementById("timebox-input").value;
 				browser.tabs.sendMessage(tabs[0].id, {
 					command: "start-timer",
 					timebox: tb
+				})
+					.then(() => {
+						window.close();
+					});
 			});
-		});
 	}
 
 	function reportError(error) {
@@ -17,7 +20,7 @@ document.addEventListener("click", (e) => {
 	
 	if (e.target.id === "start-button") {
 		browser.tabs.query({active: true, currentWindow: true})
-			.then(startTimer)
+			.then(startTimerAndClosePopup)
 			.catch(reportError);
 	}
 });
