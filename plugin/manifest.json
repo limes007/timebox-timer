@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Timebox Timer",
-  "version": "1.0",
+  "version": "1.1",
 
   "description": "Shows a timer as overlay to Firefox browser window",
 

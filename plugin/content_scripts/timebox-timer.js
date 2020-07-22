@@ -98,6 +98,33 @@
 		remtime.setAttribute("style", "cursor: move;");
 		timer.appendChild(remtime);
 
+		let f_button = document.createElementNS("http://www.w3.org/2000/svg", "text");
+		f_button.setAttribute("id", "tbt_f_button");
+		f_button.setAttribute("x", "50%");
+		f_button.setAttribute("y", "69%");
+		f_button.setAttribute("dominant-baseline", "middle");
+		f_button.setAttribute("text-anchor", "middle");
+		f_button.setAttribute("font-size", "17");
+		f_button.setAttribute("font-family", "Verdana");
+		f_button.setAttribute("font-weight", "bold");
+		f_button.setAttribute("fill", "#469CD9");
+		f_button.setAttribute("style", "cursor: pointer;");
+		f_button.textContent = "F";
+		timer.appendChild(f_button);
+		
+		let f_wrapper = document.getElementById("timebox-timer-f-wrapper")
+		if (f_wrapper) f_wrapper.parentNode.removeChild(f_wrapper);
+
+		f_wrapper = document.createElement("div");
+		f_wrapper.setAttribute("id", "timebox-timer-f-wrapper");
+		let f_wrapper_style = "position:absolute;top:0;left:0;width:100%;height:100%;"
+		f_wrapper.setAttribute("style", f_wrapper_style+"display:none;");
+		document.body.appendChild(f_wrapper);
+		
+		let f_text = document.createElement("span");
+		f_text.textContent = "FOCUS!";
+		f_text.setAttribute("style", "height:100%;display:flex;align-items:center;justify-content:center;font-family:Verdana;font-size:25vw;color:#469CD9;opacity:0.8;z-index:1000;");
+		f_wrapper.appendChild(f_text);
 
 
 		let isDownOnTimer = false;
@@ -122,7 +149,16 @@
 			}
 		}, true);
 		
-		
+		f_button.addEventListener('mousedown', function(e) {
+			f_button.setAttribute("fill", "red");
+			f_wrapper.setAttribute("style", f_wrapper_style+"display:block;");
+		}, true);
+
+		f_button.addEventListener('mouseup', function(e) {
+			f_button.setAttribute("fill", "#469CD9");
+			f_wrapper.setAttribute("style", f_wrapper_style+"display:none;");
+		}, true);
+
 		let start_time = new Date().getTime();
 		requestAnimationFrame(function() {
 			animate(start_time, duration)
