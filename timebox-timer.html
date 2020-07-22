@@ -75,7 +75,7 @@
 		timer.setAttribute("id", "timebox-timer");
 		timer.setAttribute("height", "110");
 		timer.setAttribute("width", "110");
-		timer.setAttribute("style", "position:fixed;left:"+left+"px;top:25px;z-index:1000;");
+		timer.setAttribute("style", "position:fixed;left:"+left+"px;top:25px;z-index:1001;");
 		document.body.appendChild(timer);
 		
 		let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -127,13 +127,13 @@
 
 		f_wrapper = document.createElement("div");
 		f_wrapper.setAttribute("id", "timebox-timer-f-wrapper");
-		let f_wrapper_style = "position:absolute;top:0;left:0;width:100%;height:100%;"
+		let f_wrapper_style = "position:absolute;top:0;left:0;width:100%;height:100%;z-index:1000;"
 		f_wrapper.setAttribute("style", f_wrapper_style+"display:none;");
 		document.body.appendChild(f_wrapper);
 		
 		let f_text = document.createElement("span");
 		f_text.textContent = "FOCUS!";
-		f_text.setAttribute("style", "height:100%;display:flex;align-items:center;justify-content:center;font-family:Verdana;font-size:25vw;color:#469CD9;opacity:0.8;z-index:1000;");
+		f_text.setAttribute("style", "height:100%;display:flex;align-items:center;justify-content:center;font-family:Verdana;font-size:25vw;color:#469CD9;opacity:0.8;");
 		f_wrapper.appendChild(f_text);
 
 
