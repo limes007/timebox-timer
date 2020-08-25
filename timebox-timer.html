@@ -59,6 +59,11 @@
         document.getElementById("tbt_progressbar").setAttribute("d", describeArc(55, 55, 42.5, 0, angle));
         document.getElementById("tbt_remtime").textContent = fmtTimeMS( (duration - elapsed_sec + 1) * 1000);
         
+        // for screenshots
+        if (document.getElementById("tbt_remtime").textContent == "13:17") {
+            return;
+        }
+        
         requestAnimationFrame(function() {
             animate(start_time, duration)
         });
