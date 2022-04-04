@@ -28,11 +28,11 @@
         var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
 
         var d = [
-            "M", start.x, start.y, 
+            "M", start.x, start.y,
             "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
         ].join(" ");
 
-        return d;       
+        return d;
     }
 
     function animate(start_time, duration){
@@ -44,11 +44,11 @@
             document.getElementById("tbt_remtime").setAttribute("fill", "red");
             return;
         }
-        
+
         let angle = 360 / duration * elapsed_sec;
         document.getElementById("tbt_progressbar").setAttribute("d", describeArc(55, 55, 42.5, 0, angle));
         document.getElementById("tbt_remtime").textContent = fmtTimeMS( (duration - elapsed_sec + 1) * 1000);
-        
+
         requestAnimationFrame(function() {
             animate(start_time, duration)
         });
@@ -57,7 +57,7 @@
     function startTimeboxTimer(minutes) {
         let duration = minutes * 60;
         let left = document.body.clientWidth - 110 - 25;
-        
+
         let timer = document.getElementById("timebox-timer")
         if (timer) timer.parentNode.removeChild(timer);
 
@@ -67,7 +67,7 @@
         timer.setAttribute("width", "110");
         timer.setAttribute("style", "position:fixed;left:"+left+"px;top:25px;z-index:1001;");
         document.body.appendChild(timer);
-        
+
         let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
         circle.setAttribute("cx", "55");
         circle.setAttribute("cy", "55");
@@ -77,14 +77,14 @@
         circle.setAttribute("stroke-width", "15");
         circle.setAttribute("stroke-opacity", "0.8");
         timer.appendChild(circle);
-        
+
         let progressbar = document.createElementNS("http://www.w3.org/2000/svg", "path");
         progressbar.setAttribute("id", "tbt_progressbar");
         progressbar.setAttribute("fill", "none");
         progressbar.setAttribute("stroke", "white");
         progressbar.setAttribute("stroke-width", "9");
         timer.appendChild(progressbar);
-        
+
         let remtime = document.createElementNS("http://www.w3.org/2000/svg", "text");
         remtime.setAttribute("id", "tbt_remtime");
         remtime.setAttribute("x", "50%");
@@ -124,7 +124,7 @@
         x_button.setAttribute("style", "cursor: pointer;display:none;");
         x_button.textContent = "x";
         timer.appendChild(x_button);
-        
+
         let f_wrapper = document.getElementById("timebox-timer-f-wrapper")
         if (f_wrapper) f_wrapper.parentNode.removeChild(f_wrapper);
 
@@ -133,7 +133,7 @@
         let f_wrapper_style = "position:absolute;top:0;left:0;width:100%;height:100%;z-index:1000;"
         f_wrapper.setAttribute("style", f_wrapper_style+"display:none;");
         document.body.appendChild(f_wrapper);
-        
+
         let f_text = document.createElement("span");
         f_text.textContent = "FOCUS!";
         f_text.setAttribute("style", "height:100%;display:flex;align-items:center;justify-content:center;font-family:Verdana;font-size:25vw;color:#469CD9;opacity:0.8;");
@@ -161,7 +161,7 @@
                 timer.style.top  = (event.clientY + offset[1]) + "px";
             }
         }, true);
-        
+
         timer.addEventListener('mouseover', function() {
             f_button.setAttribute("style", "cursor: pointer;");
             x_button.setAttribute("style", "cursor: pointer;");
