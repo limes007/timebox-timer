@@ -71,7 +71,6 @@
 
     function startTimeboxTimer(minutes) {
         let duration = minutes * 60;
-        let left = document.body.clientWidth - 110 - 25;
 
         let timer = document.getElementById("timebox-timer")
         if (timer) timer.parentNode.removeChild(timer);
@@ -80,7 +79,7 @@
         timer.setAttribute("id", "timebox-timer");
         timer.setAttribute("height", "110");
         timer.setAttribute("width", "110");
-        timer.setAttribute("style", "position:fixed;left:"+left+"px;top:25px;z-index:1001;");
+        timer.setAttribute("style", "position:fixed;right:25px;top:25px;z-index:1001;");
         document.body.appendChild(timer);
 
         let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -172,7 +171,7 @@
         document.addEventListener('mousemove', function(event) {
             if (isDownOnTimer) {
                 event.preventDefault();
-                timer.style.left = (event.clientX + offset[0]) + "px";
+                timer.style.right = (document.body.clientWidth - event.clientX + offset[0]) + "px";
                 timer.style.top  = (event.clientY + offset[1]) + "px";
             }
         }, true);
