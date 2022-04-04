@@ -156,7 +156,7 @@
         document.addEventListener('mousemove', function(event) {
             if (isDownOnTimer) {
                 event.preventDefault();
-                timer.style.right = (document.body.clientWidth - event.clientX + offset[0]) + "px";
+                timer.style.right = (document.body.clientWidth - (event.clientX + offset[0] + 110)) + "px";
                 timer.style.top  = (event.clientY + offset[1]) + "px";
             }
         }, true);
