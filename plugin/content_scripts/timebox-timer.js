@@ -145,8 +145,8 @@
         timer.addEventListener('mousedown', function(e) {
             isDownOnTimer = true;
             offset = [
-                timer.style.left.replace("px","") - e.clientX,
-                timer.style.top.replace("px","") - e.clientY
+                timer.getBoundingClientRect().left - e.clientX,
+                timer.getBoundingClientRect().top - e.clientY
             ];
         }, true);
 
