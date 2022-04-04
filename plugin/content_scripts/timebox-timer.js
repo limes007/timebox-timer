@@ -36,6 +36,8 @@
     }
 
     function animate(start_time, duration){
+        if (!document.getElementById("timebox-timer")) return;
+
         let curr_time = new Date().getTime();
         let elapsed_sec = (curr_time - start_time) / 1000;
         if (elapsed_sec >= duration) {
