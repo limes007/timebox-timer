@@ -79,7 +79,7 @@
         timer.setAttribute("id", "timebox-timer");
         timer.setAttribute("height", "110");
         timer.setAttribute("width", "110");
-        timer.setAttribute("style", "position:fixed;right:25px;top:25px;z-index:1001;");
+        timer.setAttribute("style", "position:fixed;right:25px;top:25px;z-index:1001;cursor:move;");
         document.body.appendChild(timer);
 
         let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -109,7 +109,7 @@
         remtime.setAttribute("font-family", "Verdana");
         remtime.setAttribute("font-weight", "bold");
         remtime.setAttribute("fill", "#469CD9");
-        remtime.setAttribute("style", "cursor: move;");
+        remtime.setAttribute("style", "user-select:none");
         timer.appendChild(remtime);
 
         let f_button = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -122,7 +122,7 @@
         f_button.setAttribute("font-family", "Verdana");
         f_button.setAttribute("font-weight", "bold");
         f_button.setAttribute("fill", "#469CD9");
-        f_button.setAttribute("style", "cursor: pointer;display:none;");
+        f_button.setAttribute("style", "cursor:pointer;display:none;user-select:none");
         f_button.textContent = "F";
         timer.appendChild(f_button);
 
@@ -135,7 +135,7 @@
         x_button.setAttribute("font-size", "17");
         x_button.setAttribute("font-family", "Verdana");
         x_button.setAttribute("fill", "#469CD9");
-        x_button.setAttribute("style", "cursor: pointer;display:none;");
+        x_button.setAttribute("style", "cursor:pointer;display:none;user-select:none");
         x_button.textContent = "x";
         timer.appendChild(x_button);
 
@@ -177,12 +177,12 @@
         }, true);
 
         timer.addEventListener('mouseover', function() {
-            f_button.setAttribute("style", "cursor: pointer;");
-            x_button.setAttribute("style", "cursor: pointer;");
+            f_button.style.display = "unset";
+            x_button.style.display = "unset";
         }, true);
         timer.addEventListener('mouseout', function() {
-            f_button.setAttribute("style", "display:none;");
-            x_button.setAttribute("style", "display:none;");
+            f_button.style.display = "none";
+            x_button.style.display = "none";
         }, true);
 
         f_button.addEventListener('mousedown', function(e) {
