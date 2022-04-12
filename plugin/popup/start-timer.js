@@ -8,16 +8,16 @@ document.addEventListener("click", (e) => {
 					command: "start-timer",
 					timebox: tb
 				})
-					.then(() => {
-						window.close();
-					});
+				.then(() => {
+					window.close();
+				});
 			});
 	}
 
 	function reportError(error) {
 		console.error("Could not start timer: " + error);
 	}
-	
+
 	if (e.target.id === "start-button") {
 		browser.tabs.query({active: true, currentWindow: true})
 			.then(startTimerAndClosePopup)
