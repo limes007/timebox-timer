@@ -231,6 +231,12 @@
             }
         }, true);
 
+        x_button.addEventListener('mousedown', function(e) {
+            x_button.setAttribute("fill", "red");
+        }, true);
+        x_button.addEventListener('mouseup', function(e) {
+            x_button.setAttribute("fill", "#469CD9");
+        }, true);
         x_button.addEventListener('click', function(e) {
             timer.parentNode.removeChild(timer);
         }, true);
