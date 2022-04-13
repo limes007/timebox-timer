@@ -48,18 +48,26 @@
     function animate(start_time, duration){
         if (!document.getElementById("timebox-timer")) return;
 
+        if (document.getElementById("timebox-timer").restart) {
+            start_time = new Date().getTime();
+            document.getElementById("timebox-timer").restart = false;
+        }
+
         let curr_time = new Date().getTime();
         let elapsed_sec = (curr_time - start_time) / 1000;
         if (elapsed_sec >= duration) {
             document.getElementById("tbt_progressbar").setAttribute("d", describeArc(55, 55, 42.5, 0, 359.99));
             document.getElementById("tbt_remtime").textContent = fmtTimeMS(0);
             document.getElementById("tbt_remtime").setAttribute("fill", "red");
+            document.getElementById("timebox-timer").running = false;
             return;
         }
 
         let angle = 360 / duration * elapsed_sec;
         document.getElementById("tbt_progressbar").setAttribute("d", describeArc(55, 55, 42.5, 0, angle));
         document.getElementById("tbt_remtime").textContent = fmtTimeMS( (duration - elapsed_sec + 1) * 1000);
+        document.getElementById("tbt_remtime").setAttribute("fill", "#469CD9");
+        document.getElementById("timebox-timer").running = true;
 
         // for screenshots
         if (document.getElementById("tbt_remtime").textContent == "13:17") {
@@ -128,6 +136,28 @@
         f_button.textContent = "F";
         timer.appendChild(f_button);
 
+        let r_button = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        r_button.setAttribute("id", "tbt_r_button");
+        r_button.setAttribute("x", 55-8);
+        r_button.setAttribute("y", 26);
+        r_button.setAttribute("fill", "#469CD9");
+        r_button.setAttribute("stroke", "#469CD9");
+        r_button.setAttribute("style", "cursor:pointer;display:none;user-select:none");
+        let r_button_rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        r_button_rect.setAttribute("width", "16");
+        r_button_rect.setAttribute("height", "16");
+        r_button_rect.setAttribute("fill", "white");
+        r_button_rect.setAttribute("stroke", "white");
+        r_button_rect.setAttribute("opacity", "0.01");
+        r_button.appendChild(r_button_rect);
+        let r_button_p1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        r_button_p1.setAttribute("d", "M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z");
+        r_button.appendChild(r_button_p1);
+        let r_button_p2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        r_button_p2.setAttribute("d", "M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z");
+        r_button.appendChild(r_button_p2);
+        timer.appendChild(r_button);
+
         let x_button = document.createElementNS("http://www.w3.org/2000/svg", "text");
         x_button.setAttribute("id", "tbt_x_button");
         x_button.setAttribute("x", "98");
@@ -180,10 +210,12 @@
 
         timer.addEventListener('mouseover', function() {
             f_button.style.display = "unset";
+            r_button.style.display = "unset";
             x_button.style.display = "unset";
         }, true);
         timer.addEventListener('mouseout', function() {
             f_button.style.display = "none";
+            r_button.style.display = "none";
             x_button.style.display = "none";
         }, true);
 
@@ -191,19 +223,41 @@
             f_button.setAttribute("fill", "red");
             f_wrapper.setAttribute("style", f_wrapper_style+"display:block;");
         }, true);
-
         f_button.addEventListener('mouseup', function(e) {
             f_button.setAttribute("fill", "#469CD9");
             f_wrapper.setAttribute("style", f_wrapper_style+"display:none;");
         }, true);
 
+        r_button.addEventListener('mousedown', function(e) {
+            r_button.setAttribute("fill", "red");
+            r_button.setAttribute("stroke", "red");
+        }, true);
+        r_button.addEventListener('mouseup', function(e) {
+            r_button.setAttribute("fill", "#469CD9");
+            r_button.setAttribute("stroke", "#469CD9");
+        }, true);
+        r_button.addEventListener('click', function(e) {
+            if (document.getElementById("timebox-timer").running) {
+                document.getElementById("timebox-timer").restart = true;
+            } else {
+                requestAnimationFrame(function() {
+                    animate(new Date().getTime(), duration)
+                });
+            }
+        }, true);
+
+        x_button.addEventListener('mousedown', function(e) {
+            x_button.setAttribute("fill", "red");
+        }, true);
+        x_button.addEventListener('mouseup', function(e) {
+            x_button.setAttribute("fill", "#469CD9");
+        }, true);
         x_button.addEventListener('click', function(e) {
             timer.parentNode.removeChild(timer);
         }, true);
 
-        let start_time = new Date().getTime();
         requestAnimationFrame(function() {
-            animate(start_time, duration)
+            animate(new Date().getTime(), duration)
         });
     }
 
