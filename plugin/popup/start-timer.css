@@ -23,8 +23,16 @@ body {
 	background-color: #21007F;
 }
 
+.button.disabled {
+	background-color: gray;
+	pointer-events: none;
+}
+
 input[type="text"] {
 	border: 1px solid #1760D6;
 	background-color: white;
 }
 
+#error-message {
+	padding-bottom: 15px;
+}

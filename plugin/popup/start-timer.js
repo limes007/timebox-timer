@@ -8,6 +8,15 @@ browser.storage.local.get()
 	document.getElementById("timebox-input").value = tb_config.timebox;
 });
 
+browser.tabs.query({active: true, currentWindow: true})
+.then((tabs) => {
+	if (!tabs[0].url.startsWith("http")) {
+		document.getElementById("error-message-holder").innerHTML = "<div id='error-message'>Timer can only be <br/>started in a tab with <br/>an open HTML page.<div/>";
+		document.getElementById("timebox-input").disabled = true;
+		document.getElementById("start-button").classList.add("disabled");
+	}
+});
+
 document.addEventListener("click", (e) => {
 
 	function startTimerAndClosePopup(tabs) {
