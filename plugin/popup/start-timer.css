@@ -3,7 +3,7 @@ body {
 	margin: 0px;
 	background-color: #469CD9;
 	color: white;
-	font-family: Verdana;
+	font-family: Verdana, "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Kalimati", "Arial", "sans-serif";
 	font-size: 12px;
 	border: 2px solid white;
 }
