@@ -7,9 +7,10 @@
         if (num < 10) return "0" + num;
         return num;
     }
-    function fmtTimeMS(timesec) {
-        let time = new Date(timesec);
-        return fmtNumber(time.getMinutes())+":"+fmtNumber(time.getSeconds());
+    function fmtTime(timesec) {
+        let i_min = Math.floor(timesec/60);
+        let i_sec = Math.floor(timesec - i_min*60);
+        return fmtNumber(i_min)+":"+fmtNumber(i_sec);
     }
 
     function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
@@ -47,7 +48,7 @@
         let elapsed_sec = (curr_time - start_time) / 1000;
         if (elapsed_sec >= duration) {
             document.getElementById("tbt_progressbar").setAttribute("d", describeArc(55, 55, 42.5, 0, 359.99));
-            document.getElementById("tbt_remtime").textContent = fmtTimeMS(0);
+            document.getElementById("tbt_remtime").textContent = fmtTime(0);
             document.getElementById("tbt_remtime").setAttribute("fill", "red");
             document.getElementById("timebox-timer").running = false;
             return;
@@ -55,7 +56,7 @@
 
         let angle = 360 / duration * elapsed_sec;
         document.getElementById("tbt_progressbar").setAttribute("d", describeArc(55, 55, 42.5, 0, angle));
-        document.getElementById("tbt_remtime").textContent = fmtTimeMS( (duration - elapsed_sec + 1) * 1000);
+        document.getElementById("tbt_remtime").textContent = fmtTime(duration - elapsed_sec + 1);
         document.getElementById("tbt_remtime").setAttribute("fill", "#469CD9");
         document.getElementById("timebox-timer").running = true;
 
