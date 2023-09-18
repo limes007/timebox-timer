@@ -81,6 +81,7 @@
 
     function startTimeboxTimer(minutes) {
         let duration = minutes * 60;
+        let font = 'Verdana, "DejaVu Sans", "Bitstream Vera Sans", "Tahoma", "Kalimati", "Arial", "sans-serif"';
 
         let timer = document.getElementById("timebox-timer")
         if (timer) timer.parentNode.removeChild(timer);
@@ -116,7 +117,7 @@
         remtime.setAttribute("dominant-baseline", "middle");
         remtime.setAttribute("text-anchor", "middle");
         remtime.setAttribute("font-size", "17");
-        remtime.setAttribute("font-family", "Verdana");
+        remtime.setAttribute("font-family", font);
         remtime.setAttribute("font-weight", "bold");
         remtime.setAttribute("fill", "#469CD9");
         remtime.setAttribute("style", "user-select:none");
@@ -129,7 +130,7 @@
         f_button.setAttribute("dominant-baseline", "middle");
         f_button.setAttribute("text-anchor", "middle");
         f_button.setAttribute("font-size", "17");
-        f_button.setAttribute("font-family", "Verdana");
+        f_button.setAttribute("font-family", font);
         f_button.setAttribute("font-weight", "bold");
         f_button.setAttribute("fill", "#469CD9");
         f_button.setAttribute("style", "cursor:pointer;display:none;user-select:none");
@@ -165,7 +166,7 @@
         x_button.setAttribute("dominant-baseline", "middle");
         x_button.setAttribute("text-anchor", "middle");
         x_button.setAttribute("font-size", "17");
-        x_button.setAttribute("font-family", "Verdana");
+        x_button.setAttribute("font-family", font);
         x_button.setAttribute("fill", "#469CD9");
         x_button.setAttribute("style", "cursor:pointer;display:none;user-select:none");
         x_button.textContent = "x";
@@ -182,7 +183,7 @@
 
         let f_text = document.createElement("span");
         f_text.textContent = "FOCUS!";
-        f_text.setAttribute("style", "height:100%;display:flex;align-items:center;justify-content:center;font-family:Verdana;font-size:25vw;color:#469CD9;opacity:0.8;");
+        f_text.setAttribute("style", "height:100%;display:flex;align-items:center;justify-content:center;font-family:"+font+";font-size:25vw;color:#469CD9;opacity:0.8;");
         f_wrapper.appendChild(f_text);
 
 
